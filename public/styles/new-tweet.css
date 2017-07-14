@@ -1,7 +1,7 @@
 .counter {  
  display: inline-block;
  font-size: .8em;
- padding-left: 290px;
+ padding-left: 298px;
 }
 
 .tweet-new {
@@ -46,9 +46,8 @@
 
 .tweet-new p {
   color: red;
-  margin: 0;
   display: none;
-  font-size: .7em;
-  padding: 0;
-  text-align: center;
+  font-size: .8em;
+  position: absolute;
+  padding-left: 80px;
 }
