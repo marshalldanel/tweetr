@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
-    "local": "./node_modules/.bin/nodemon --watch server -e js server/index.js"
+    "local": "./node_modules/.bin/nodemon --watch server -e js server/index.js",
+    "sass": "node_modules/node-sass/bin/node-sass sass/styles.scss public/styles/styles.css -w sass/styles.scss"
+
   },
-  "author": "Lighthouse Labs",
+  "author": "Lighthouse Labs and Marshall",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
