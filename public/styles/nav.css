@@ -19,12 +19,12 @@
 }
 
 
-#nav-bar .logo {
+#nav-bar img {
   height: 80px;
   padding-left: 2em;
 }
 
-#nav-bar .nav-button {
+#nav-bar button {
   background-color: #e8fdff;
   border: 1px solid #013a31;
   border-radius: 5px;
@@ -34,17 +34,16 @@
   top: 0;
 }
 
-#nav-bar .nav-button:hover {
+#nav-bar button:hover {
   background-color: white;
   color: black;
   cursor: pointer;
 }
 
-#nav-bar .nav-button span {
+#nav-bar button span {
   padding-right: 5px;
 }
 
-#nav-bar .nav-bar-section {
+#nav-bar div {
   padding-right: 2em;
-  right: 2em;
 }
