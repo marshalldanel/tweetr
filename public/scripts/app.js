@@ -1,9 +1,25 @@
 $(() => {
 
-  function escape(str) {
-    var div = document.createElement("div");
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
+////// 
+//// #Helper Functions
+//////
+
+  $("#nav-bar button").on("click", function () {
+    let $textArea = $(".tweet-new > form > textarea");
+    $(".tweet-new").slideToggle("slow", function () {
+      if ($(".tweet-new").is(":visible")) {
+        $textArea.focus();
+      }
+    });
+  });
+
+  function tweetLength(data) {
+    let value = $(".tweet-new > form > textarea").val().length;
+    if (value < 1 || value > 140) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   function timeDifference(current, previous) {
@@ -45,6 +61,16 @@ $(() => {
     }
   }
 
+  //////
+  //// #Tweet Template
+  //////
+
+  function escape(str) {
+    var div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
   function createTweetElement(tweet) {
     const currentDate = (new Date());
     const createdAt = tweet.created_at;
@@ -63,11 +89,15 @@ $(() => {
           <p>${newTime}</p>
           <span class="fa fa-flag" aria-hidden="true"></span>
           <span class="fa fa-retweet" aria-hidden="true"></span>
-          <a href="#"><span id="likes" class="fa fa-heart" aria-hidden="true"></span></a>
+          <span class="fa fa-heart" aria-hidden="true"></span>
         </footer>
       </article>`;
     return html;
   }
+
+  //////
+  //// #Tweet Render/Show
+  //////
 
   function renderTweets(data) {
     let allTweets = '';
@@ -88,25 +118,9 @@ $(() => {
       });
   }
 
-  function tweetLength(data) {
-    let value = $(".tweet-new > form > textarea").val().length;
-    if (value < 1 || value > 140) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  $(".compose").on("click", function () {
-    let $textArea = $(".tweet-new > form > textarea");
-    $(".tweet-new").slideToggle("slow", function () {
-      if ($(".tweet-new").is(":visible")) {
-        $textArea.focus();
-      }
-    });
-  });
-
-  
+  //////
+  //// #Tweet Submission
+  //////
 
   function submitTweet(event) {
     event.preventDefault();
