@@ -8,7 +8,6 @@
     "start": "node server/index.js",
     "local": "./node_modules/.bin/nodemon --watch server -e js server/index.js",
     "sass": "node_modules/node-sass/bin/node-sass sass/styles.scss public/styles/styles.css -w sass/styles.scss"
-
   },
   "author": "Lighthouse Labs and Marshall",
   "license": "ISC",
@@ -17,6 +16,7 @@
     "chance": "^1.0.2",
     "express": "^4.13.4",
     "md5": "^2.1.0",
+    "moment": "^2.18.1",
     "mongodb": "^2.2.30"
   },
   "devDependencies": {

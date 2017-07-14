@@ -22,45 +22,6 @@ $(() => {
     }
   }
 
-  function timeDifference(current, previous) {
-
-    var msPerMinute = 60 * 1000;
-    var msForTwoMins = msPerMinute * 2;
-
-    var msPerHour = msPerMinute * 60;
-    var msForTwoHours = msPerHour * 2;
-
-    var msPerDay = msPerHour * 24;
-    var msForTwoDays = msPerDay * 2;
-
-    var msPerMonth = msPerDay * 30;
-    var msForTwoMonths = msPerMonth * 2;
-
-    var msPerYear = msPerDay * 365;
-
-    var elapsed = current - previous;
-
-
-    switch (true) {
-    case elapsed < msForTwoMins:
-      return "1 minute ago";
-    case elapsed < msPerHour:
-      return Math.round(elapsed / msPerMinute) + " minutes ago";
-    case elapsed < msForTwoHours:
-      return "1 hour ago";
-    case elapsed < msPerDay:
-      return Math.round(elapsed / msPerHour) + " hours ago";
-    case elapsed < msForTwoDays:
-      return "1 day ago";
-    case elapsed < msPerMonth:
-      return Math.round(elapsed / msPerDay) + " days ago";
-    case elapsed < msForTwoMonths:
-      return "1 month ago";
-    default:
-      return Math.round(elapsed / msPerYear ) + " year ago";
-    }
-  }
-
   //////
   //// #Tweet Template
   //////
@@ -72,9 +33,10 @@ $(() => {
   }
 
   function createTweetElement(tweet) {
-    const currentDate = (new Date());
+
     const createdAt = tweet.created_at;
-    const newTime = timeDifference(currentDate, createdAt);
+    const newTime = moment(createdAt + 840000);
+
     const html = `
       <article class="tweets">
         <header>
@@ -86,14 +48,18 @@ $(() => {
           <p>${escape(tweet.content.text)}</p>
         </main>
         <footer>
-          <p>${newTime}</p>
+          <p>${newTime.fromNow()}</p>
           <span class="fa fa-flag" aria-hidden="true"></span>
           <span class="fa fa-retweet" aria-hidden="true"></span>
-          <span class="fa fa-heart" aria-hidden="true"></span>
+          <a href="" id="likesButton"><span class="fa fa-heart" aria-hidden="true"></span></a>
         </footer>
       </article>`;
     return html;
   }
+
+  $("#tweets > footer > #likesButton").on("click", function() {
+    console.log("hello");
+  });
 
   //////
   //// #Tweet Render/Show
