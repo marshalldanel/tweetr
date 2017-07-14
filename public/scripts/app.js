@@ -1,11 +1,3 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery"s document ready function
- */
-
-// Test / driver code (temporary). Eventually will get this from the server.
-
 $(() => {
 
   function escape(str) {
@@ -17,23 +9,39 @@ $(() => {
   function timeDifference(current, previous) {
 
     var msPerMinute = 60 * 1000;
+    var msForTwoMins = msPerMinute * 2;
+
     var msPerHour = msPerMinute * 60;
+    var msForTwoHours = msPerHour * 2;
+
     var msPerDay = msPerHour * 24;
+    var msForTwoDays = msPerDay * 2;
+
     var msPerMonth = msPerDay * 30;
+    var msForTwoMonths = msPerMonth * 2;
+
     var msPerYear = msPerDay * 365;
 
     var elapsed = current - previous;
 
-    if (elapsed < msPerHour) {
-      return Math.round(elapsed / msPerMinute) + "minutes ago";
-    } else if (elapsed < msPerDay) {
-      return Math.round(elapsed / msPerHour) + "hours ago";
-    } else if (elapsed < msPerMonth) {
-      return Math.round(elapsed / msPerDay) + "days ago";
-    } else if (elapsed < msPerYear) {
-      return Math.round(elapsed / msPerMonth) + "months ago";
-    } else {
-      return Math.round(elapsed / msPerYear ) + "year ago";
+
+    switch (true) {
+    case elapsed < msForTwoMins:
+      return "1 minute ago";
+    case elapsed < msPerHour:
+      return Math.round(elapsed / msPerMinute) + " minutes ago";
+    case elapsed < msForTwoHours:
+      return "1 hour ago";
+    case elapsed < msPerDay:
+      return Math.round(elapsed / msPerHour) + " hours ago";
+    case elapsed < msForTwoDays:
+      return "1 day ago";
+    case elapsed < msPerMonth:
+      return Math.round(elapsed / msPerDay) + " days ago";
+    case elapsed < msForTwoMonths:
+      return "1 month ago";
+    default:
+      return Math.round(elapsed / msPerYear ) + " year ago";
     }
   }
 
@@ -55,7 +63,7 @@ $(() => {
           <p>${newTime}</p>
           <span class="fa fa-flag" aria-hidden="true"></span>
           <span class="fa fa-retweet" aria-hidden="true"></span>
-          <span class="fa fa-heart" aria-hidden="true"></span>
+          <a href="#"><span id="likes" class="fa fa-heart" aria-hidden="true"></span></a>
         </footer>
       </article>`;
     return html;
@@ -89,7 +97,7 @@ $(() => {
     }
   }
 
-  $(".nav-button").on("click", function () {
+  $(".compose").on("click", function () {
     let $textArea = $(".tweet-new > form > textarea");
     $(".tweet-new").slideToggle("slow", function () {
       if ($(".tweet-new").is(":visible")) {
@@ -97,6 +105,8 @@ $(() => {
       }
     });
   });
+
+  
 
   function submitTweet(event) {
     event.preventDefault();
@@ -109,7 +119,7 @@ $(() => {
       setTimeout(function() {
         $(".tweet-new > form > textarea").focus();
         $(".error").hide();
-      }, 1000);
+      }, 1500);
     } else {
       $.ajax({
         type: "POST",
