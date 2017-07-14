@@ -2,9 +2,9 @@
 [![Build Status][travis-image]][travis-url]
 [![Downloads Stats][npm-downloads]][npm-url]
 
-# Tweeter Project
+# Tweetr Project
 
-Tweeter is a simple, single-page Twitter clone. It's like twitter. Arguably better. Arguably worse.
+Tweetr is a simple, single-page Twitter clone. It's like twitter. Arguably better. Arguably worse.
 
 ## Screenshots
 
