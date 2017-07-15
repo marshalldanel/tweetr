@@ -8,7 +8,7 @@ Tweetr is a simple, single-page Twitter clone. It's like twitter. Arguably bette
 
 ## Screenshots
 
-![Screenshot of URLs page](https://github.com/marshalldanel/tweetr/blob/master/docs/Screen%20Shot%202017-07-14%20at%209.05.35%20AM.png?raw=true)
+![Screenshot of URLs page](https://github.com/marshalldanel/tweetr/blob/master/docs/Screen_Shot.png?raw=true)
 
 ## Project Stack
 
