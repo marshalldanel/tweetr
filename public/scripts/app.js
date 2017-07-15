@@ -35,7 +35,7 @@ $(() => {
   function createTweetElement(tweet) {
 
     const createdAt = tweet.created_at;
-    const newTime = moment(createdAt + 840000);
+    const newTime = moment(createdAt);
 
     const html = `
       <article class="tweets">
