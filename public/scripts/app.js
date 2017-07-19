@@ -62,9 +62,12 @@ $(() => {
   //////
 
   function renderTweets(data) {
-    data.forEach((tweet) => {
-      $("#tweets").prepend(createTweetElement(tweet));
+    let allTweets = '';
+    data.forEach(function(tweet) {
+      const renderedTweet = createTweetElement(tweet);
+      allTweets = renderedTweet + allTweets;
     });
+    $('#tweets').empty().prepend(allTweets);
   }
 
   function loadTweets() {
@@ -109,7 +112,7 @@ $(() => {
   
   const $form = $("#newTweet");
 
-  $form.on("submit", submitTweet);
+  $form.submit(submitTweet);
 
   loadTweets();
 });
