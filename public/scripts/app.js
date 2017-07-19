@@ -5,7 +5,7 @@ $(() => {
 //////
 
   $("#nav-bar button").on("click", function () {
-    let $textArea = $(".tweet-new > form > textarea");
+    let $textArea = $("#tweetBox");
     $(".tweet-new").slideToggle("slow", function () {
       if ($(".tweet-new").is(":visible")) {
         $textArea.focus();
@@ -14,7 +14,7 @@ $(() => {
   });
 
   function tweetLength(data) {
-    let value = $(".tweet-new > form > textarea").val().length;
+    let value = $("#tweetBox").val().length;
     if (value < 1 || value > 140) {
       return true;
     } else {
@@ -51,27 +51,20 @@ $(() => {
           <p>${newTime.fromNow()}</p>
           <span class="fa fa-flag" aria-hidden="true"></span>
           <span class="fa fa-retweet" aria-hidden="true"></span>
-          <a href="" id="likesButton"><span class="fa fa-heart" aria-hidden="true"></span></a>
+          <span class="fa fa-heart" aria-hidden="true"></span>
         </footer>
       </article>`;
     return html;
   }
-
-  $("#tweets > footer > #likesButton").on("click", function() {
-    console.log("hello");
-  });
 
   //////
   //// #Tweet Render/Show
   //////
 
   function renderTweets(data) {
-    let allTweets = '';
-    for (const tweet in data) {
-      const renderedTweet = createTweetElement(data[tweet]);
-      allTweets = renderedTweet + allTweets;
-    }
-    $('#tweets').empty().append(allTweets);
+    data.forEach((tweet) => {
+      $("#tweets").prepend(createTweetElement(tweet));
+    });
   }
 
   function loadTweets() {
@@ -97,7 +90,7 @@ $(() => {
       $(".error").show();
       
       setTimeout(function() {
-        $(".tweet-new > form > textarea").focus();
+        $("#tweetBox").focus();
         $(".error").hide();
       }, 1500);
     } else {
