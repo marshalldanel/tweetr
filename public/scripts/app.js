@@ -13,7 +13,7 @@ $(() => {
     });
   });
 
-  function tweetLength(data) {
+  function validTweetLength(data) {
     let value = $("#tweetBox").val().length;
     if (value < 1 || value > 140) {
       return true;
@@ -26,7 +26,7 @@ $(() => {
   //// #Tweet Template
   //////
 
-  function escape(str) {
+  function escapeXXS(str) {
     var div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
@@ -41,11 +41,11 @@ $(() => {
       <article class="tweets">
         <header>
           <img src=${tweet.user.avatars.small} alt="profile pic">
-          <h3>${escape(tweet.user.name)}</h3>
-          <p>${escape(tweet.user.handle)}</p>
+          <h3>${escapeXXS(tweet.user.name)}</h3>
+          <p>${escapeXXS(tweet.user.handle)}</p>
         </header>
         <main>
-          <p>${escape(tweet.content.text)}</p>
+          <p>${escapeXXS(tweet.content.text)}</p>
         </main>
         <footer>
           <p>${newTime.fromNow()}</p>
@@ -86,7 +86,7 @@ $(() => {
     const $form = $(this);
     const data = $form.serialize();
 
-    if (tweetLength() === true) {
+    if (validTweetLength() === true) {
       $(".error").show();
       
       setTimeout(function() {
